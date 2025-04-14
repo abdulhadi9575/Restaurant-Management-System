@@ -16,7 +16,6 @@ class RestaurantOrderManagement:
         }
         self.exchange_rate=82
 
-        self.setup_background(root)
         frame=ttk.Frame(root)
         frame.place(relx=0.5,rely=0.5,
                     anchor=tk.CENTER)
@@ -92,3 +91,18 @@ class RestaurantOrderManagement:
                 total_cost += cost
                 if quantity > 0:
                     order_summary += f"{item}: {quantity} x {symbol}{price} = {symbol}{cost}\n"
+
+        if total_cost > 0:
+            order_summary+=f"\n Total Cost: {symbol}{total_cost}"
+            messagebox.showinfo(
+                "Order Placed",
+                order_summary)
+            
+        else:
+            messagebox.showerror("Error", "Please order at least one item.")
+
+if __name__=="__main__":
+    root=tk.Tk()
+    app="RestaurantOrderManagement"(root)
+    root.geometry("800x600")
+    root.mainloop()
